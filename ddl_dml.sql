@@ -773,7 +773,7 @@ clients
 
 
 create table clients(
-    client_id integer, 
+    client_id varchar(128), 
     last_name varchar(128), 
     first_name varchar(128), 
     patronymic varchar(128), 
