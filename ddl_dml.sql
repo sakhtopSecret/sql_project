@@ -1,4 +1,3 @@
-
 /*
 cards
 */
@@ -605,7 +604,7 @@ accounts
 create table accounts(
 	account varchar(128), 
 	valid_to date, 
-	client integer,
+	client varchar(128),
 	create_dt date, 
 	update_dt date
 );
