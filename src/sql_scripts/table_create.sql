@@ -68,13 +68,13 @@ CREATE TABLE IF NOT EXISTS dwh_dim_terminals(
 );
 
 CREATE TABLE IF NOT EXISTS dwh_fact_transactions(
-	transaction_id int primary key not null,
+	transaction_id bigint primary key not null,
 	transaction_date timestamp,
 	card_num varchar references dwh_dim_cards (card_num),
 	oper_type varchar,
 	amount varchar,
 	oper_result varchar,
-	terminal varchar references dwh_dim_terminals (terminal_id)
+	terminal_id varchar references dwh_dim_terminals (terminal_id)
 );
 
 CREATE TABLE IF NOT EXISTS dwh_fact_passport_blacklist(
