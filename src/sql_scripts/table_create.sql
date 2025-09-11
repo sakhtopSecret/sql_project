@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS dwh_fact_transactions(
 	transaction_date timestamp,
 	card_num varchar references dwh_dim_cards (card_num),
 	oper_type varchar,
-	amount varchar,
+	amount numeric,
 	oper_result varchar,
 	terminal_id varchar references dwh_dim_terminals (terminal_id)
 );
@@ -84,3 +84,12 @@ CREATE TABLE IF NOT EXISTS dwh_fact_passport_blacklist(
 	effective_to timestamp default ('5999-12-23 23:59:59'::timestamp),
 	deleted_flag boolean default false
 );
+
+CREATE TABLE IF NOT EXISTS rep_fraud(
+	event_dt timestamp,
+	passport_num varchar(128),
+	fio varchar(400),
+	phone varchar(64),
+	event_type varchar(255),
+	report_dt timestamp default current_timestamp
+)

@@ -4,4 +4,4 @@ SELECT
 	terminal_city,
 	terminal_address
 FROM
-	final_project.stg_terminals;
+	stg_terminals;
