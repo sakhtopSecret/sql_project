@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS stg_terminals(
 	terminal_id varchar,
 	terminal_type varchar,
 	terminal_city varchar,
-	terminal_address varchar
+	terminal_address varchar,
+	file_date timestamp
 );
 
 CREATE TABLE IF NOT EXISTS stg_transactions(
@@ -16,12 +17,14 @@ CREATE TABLE IF NOT EXISTS stg_transactions(
 	oper_type varchar,
 	amount varchar,
 	oper_result varchar,
-	terminal varchar
+	terminal varchar,
+	file_date timestamp
 );
 
 CREATE TABLE IF NOT EXISTS stg_passport_blacklist(
 	date date,
-	passport varchar
+	passport varchar,
+	file_date timestamp
 );
 
 
@@ -59,10 +62,11 @@ CREATE TABLE  IF NOT EXISTS dwh_dim_cards(
 );
 
 CREATE TABLE IF NOT EXISTS dwh_dim_terminals(
-	terminal_id varchar primary key not null,
+	terminal_id varchar not null,
 	terminal_type varchar,
 	terminal_city varchar,
 	terminal_address varchar,
+	date timestamp,
 	create_dt timestamp default current_timestamp,
 	update_dt timestamp default current_timestamp
 );
@@ -74,13 +78,13 @@ CREATE TABLE IF NOT EXISTS dwh_fact_transactions(
 	oper_type varchar,
 	amount numeric,
 	oper_result varchar,
-	terminal_id varchar references dwh_dim_terminals (terminal_id)
+	terminal_id varchar
 );
 
 CREATE TABLE IF NOT EXISTS dwh_fact_passport_blacklist(
 	id serial primary key not null,
 	client_id varchar references dwh_dim_clients (client_id),
-	effective_from timestamp default current_timestamp,
+	effective_from timestamp,
 	effective_to timestamp default ('5999-12-23 23:59:59'::timestamp),
 	deleted_flag boolean default false
 );

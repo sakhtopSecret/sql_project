@@ -1,4 +1,4 @@
-from py_scripts.db_functions import create_conn
+from db_functions import create_conn
 
 def create_db():
 
@@ -16,3 +16,5 @@ def create_db():
         cur.close()
         
     conn.close()
+
+create_db()
